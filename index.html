@@ -1,0 +1,396 @@
+<!doctype html>
+<html>
+<head>
+<script src="jquery.js"></script>
+<style>
+/*重置属性*/
+body{margin:0;padding:0}
+input{margin:0;padding:0;border:none;outline:none}
+h1,h2,h3,h4,p{margin:0;padding:0; text-decoration:none}
+.overfloe{overflow:hidden}
+img,span{display:block}
+a{color:#a2a2a2;}
+/*顶部*/
+.topbox{ background-color:#232323}
+.top{width:1100px;margin-left:auto;margin-right:auto}
+.top h1{width:70px;line-height:20px; font-family:Arial;color:#f1bdbb;font-size:10px; background-color:#d4352e;margin-top:10px; text-align:center}
+.search h2{color:#8b8b8b; font-size:12px; font-family:"微软雅黑";padding-left:19px;}
+.search input{width:146px;height:20px; background-color:#5f5f5f;color:#909090}
+.top *{float:right}
+.search *{float:left;margin-top:10px;margin-bottom:10px}
+.search img{padding-left:5px}
+.top h1:hover{color:#FFF}
+/*大banner*/
+.bannerbox{width:1100px;margin-left:auto;margin-right:auto; position:relative}
+.banner{width:1100px;margin-left:auto;margin-right:auto; position:relative;}
+.bannershow{width:1440px;}
+.huadong img{ float:left;margin-left:-720px;position:absolute;left:50%;top:0;z-index:1;}
+.bannerctrl{width:600px;height:26px; background-color:#333333;padding-left:500px;z-index:2;position:absolute;bottom:-453px; padding-top:14px}
+.bannerctrl span{width:12px;height:12px; border-radius:50%; background-color:#fff;margin-right:4px;margin-left:4px;float:left}
+.bannernav{ background-image:url(img/首页/banner/navbeijing.png); position:relative;right:0;bottom:-10px;z-index:3; background-repeat:no-repeat;float:right}
+.bannerctrl .img1{position:absolute;left:18px;bottom:8px}
+.bannerctrl .img2{position:absolute;right:18px;bottom:8px}
+.bannerctrl .current{ background-color:#F00}
+.logo{float:left;z-index:4;position:absolute;left:0; top:5px}
+.nav1{float:left}
+.nav1 a{padding-left:25px;padding-right:25px;line-height:40px;color:#b5b5b5;font-size:12px; font-family:"微软雅黑"; text-decoration:none; font-weight:bold}
+.nav2{float:left}
+.nav2 a{padding-left:22px;padding-right:13px;line-height:40px;color:#faffe5;font-size:12px; font-family:"微软雅黑"; text-decoration:none;}
+.nav1 a:hover{color:#FFF}
+.nav2 a:hover{color:#666}
+/*内容*/
+.bigcontainer{ background-color:#3f3f3f;margin-top:447px;}
+.bigbox{width:1100px;margin-left:auto;margin-right:auto; background-color:#333333;padding-bottom:8px}
+/*新闻*//*中1*/
+.leftbigbox{float:left}
+.newsbox{float:left;padding-top:20px;padding-left:18px;padding-bottom:12px}
+.centerone{padding-left:18px;clear:left}
+/*上2*/
+.gundongbox{width:556px;float:left;margin-left:12px; background-color:#434343;margin-top:20px;height:270px;overflow:hidden}
+.shownewsbox{width:1372px;float:left;}
+.picture{float:left;padding-left:12px;padding-top:12px}
+.picture p{width:260px;font-family:"宋体";font-size:12px;line-height:16px;color: #7f7f7f}
+.picture a{display:block; text-decoration:none; font-family:"宋体"; font-weight:bold;line-height:30px}
+.colora{color:#CCC}
+/*上4*/
+.topfour{padding-top:32px;float:left;padding-left:12px}
+/*关注*/
+.attention{float:left; background-color:#434343;width:259px;margin-left:12px;margin-top:12px;height:76px; position:relative}
+.attention *{float:left;}
+.attention a{padding-left:62px;padding-top:20px}
+.attention p{padding-top:16px;color:#e7decc; font-family:"宋体"; font-size:12px; font-weight:bold;padding-left:19px}
+.button{left:125px; position:absolute;top:38px;cursor: pointer}
+/*中2*/
+.tvc{padding-left:12px;float:left;padding-top:12px}
+.tvc *{float:left}
+/*中三*/
+.centerthree{float:left;padding-left:12px;padding-top:12px}
+
+/*下一*/
+.bottomone{float:left;padding-left:18px;padding-top:12px; position:relative}
+.biaoqian1{ position:absolute;left:10px;top:80%}
+.biaoqian2{ position:absolute;left:2px;top:80%}
+
+.bottomtwo{float:left;padding-left:10px;padding-top:12px;position:relative}
+
+/*页脚*/
+.bigfooterbox{ background-color:#2a2a2a;border-top:solid 2px #101010; position:relative}
+.bigfooter{width:1100px;margin-left:auto;margin-right:auto}
+.footer-top{ position:absolute;top:-2px;}
+.fangwei{ background-color:#252525;margin-top:50px;line-height:55px}
+.fangwei *{float:left}
+.fangwei a{padding-left:40px;color:#a1c144; font-family:"微软雅黑"; font-size:12px; text-decoration:none}
+.fangwei p{color:#8b8b8b; font-family:"微软雅黑"; font-size:12px}
+.fangwei a:hover{color:#F00}
+.footer{float:left;width:135px;padding-left:30px;padding-top:25px;height:280px}
+.footerbeijing{ background-color:#333333;}
+.footer .h1a{color:#c9251e;font-size:14px;font-family:"微软雅黑";padding-bottom:15px;display:block; text-decoration:none;padding-left:20px}
+.footer .pa{color:#bababa;font-size:12px;font-family:"微软雅黑";display:block; text-decoration:none; width:90px;line-height:25px; padding-left:20px}
+.pabeijing{background-color:#484848;background-image:url(img/首页/footer/%E7%AE%AD%E5%A4%B4.png); background-repeat:no-repeat; background-position:8% center;}
+.footerlogo{float:left;padding-top:20px;padding-left:345px}
+.footerbottom p{float:left;padding-top:30px;padding-left:40px}
+/*返回*/
+.back{background-color:#999; position:fixed;right:10px;bottom:10px;border:solid 1px#666; text-align:center;padding:15px; font-weight:bold;cursor: pointer}
+</style>
+<meta charset="utf-8">
+<title>野力首页</title>
+</head>
+
+<body>
+
+<!--顶部-->
+<div class="topbox overfloe">
+	<div class="top overfloe">
+    	
+        <div class="search">
+        	<h2>资讯搜索：</h2>
+            <input value="--输入资讯关键字--">
+            <img src="img/首页/top1.jpg">
+        </div>
+        <h1>English</h1>
+    </div>
+</div>
+<div class="bannerbox">
+	<img class="logo" src="img/首页/banner/logo.png">
+    <div class="banner">
+        <div class="bannershow">
+            <div class="huadong">
+                <img src="img/首页/banner/banner.jpg">
+                <img src="img/首页/banner/banner2.jpg">
+                <img src="img/首页/banner/banner3.jpg">
+                <img src="img/首页/banner/banner4.jpg">
+                <img src="img/首页/banner/banner5.jpg">                
+            </div>
+        </div>
+        <div class="bannerctrl  overfloe">
+        		<img class="img1" src="img/首页/banner/纹理左.png">
+            	<span class="current"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img class="img2" src="img/首页/banner/纹理右.png">
+        </div>
+     </div>     
+     <div class="bannernav">
+     	<div class="nav1">
+        	<a href="index.html">首页</a>
+            <a href="city.html">都市系列</a>
+            <a href="school.html">校园系列</a>            
+            <a href="running.html">跑步系列</a>
+            <a href="">综合赛事</a>
+            <a href="">娱乐营销</a>
+            <a href="">TVC</a>           	
+        </div>
+        <div class="nav2">
+        	<a href="">商城</a>
+            <a href="">VIP</a>
+            <a href="">特步儿童</a>
+            <a href="">XTOP</a>
+        </div>
+     </div>     
+</div>
+<div class="bigcontainer">
+	<div class="bigbox overfloe">
+        <div class="leftbigbox">
+            <div class="newsbox">
+                <a href="yelinews.html"><img src="img/首页/内容/新闻.jpg"></a>
+            </div>
+            <div class="centerone">
+                <a href=""><img src="img/首页/内容/中1.jpg"></a>
+            </div>
+        </div>
+    	<div class="gundongbox">
+        	<div class="shownewsbox">
+            	<div class="picture">
+                	<img src="img/首页/内容/上2.jpg">
+                    <p><a href="">品牌介绍</a>
+野力体育有限公司是一家以运动鞋、运动服、包、
+帽、球、袜等运动用品的研发、生产、营销......</p>
+                </div>
+                <div class="picture">
+                	<img src="img/首页/内容/上3.jpg">
+                    <p><a href="">品牌故事</a>
+野力体育有限公司是集合了开发、生产和品牌经
+营的大型体育用品企业....</p>
+                </div>
+                <div class="picture">
+                	<img src="img/首页/内容/上33.jpg">
+                    <p><a href="">品牌介绍</a>
+野力体育有限公司是一家以运动鞋、运动服、包、
+帽、球、袜等运动用品的研发、生产、营销......</p>
+                </div>
+                <div class="picture">
+                	<img src="img/首页/内容/上34.jpg">
+                    <p><a href="">品牌故事</a>
+野力体育有限公司是集合了开发、生产和品牌经
+营的大型体育用品企业....</p>
+                </div>
+                <div class="picture">
+                	<img src="img/首页/内容/上35.jpg">
+                    <p><a href="">品牌介绍</a>
+野力体育有限公司是一家以运动鞋、运动服、包、
+帽、球、袜等运动用品的研发、生产、营销......</p>
+                </div>
+            </div>
+        	
+        </div>
+        <div class="topfour">
+        	<a href=""><img src="img/首页/内容/上4.jpg"></a>
+        </div>
+        <div class="attention">
+                <a href=""><img src="img/首页/内容/minlogo.jpg"></a>
+                <p>中国野力</p>
+                <img class="button" src="img/首页/内容/关注.jpg">        
+            </div>
+        <div class="tvc">
+            	<a href=""><img src="img/首页/内容/中间左.jpg"></a>
+                <img class="tvcimg" src="img/首页/内容/TVC.jpg">
+            </div>
+        <div class="centerthree">
+            	<a href=""><img src="img/首页/内容/中3.jpg"></a>
+        </div>
+        <div class="bottomone">
+            	<a href="city.html"><img src="img/首页/内容/下1.jpg"></a>
+                <img class="biaoqian1" src="img/首页/内容/都市系列.png">
+        </div>
+        <div class="bottomtwo">
+            	<a href="school.html"><img src="img/首页/内容/下2.jpg"></a>
+                <img class="biaoqian2" src="img/首页/内容/校园系列.png">
+        </div>
+        <div class="bottomtwo">
+            	<a href="running.html"><img src="img/首页/内容/下3.jpg"></a>
+                <img class="biaoqian2" src="img/首页/内容/跑步系列.png">
+        </div>    
+   
+    </div>
+</div>
+<div class="bigfooterbox">
+	<div class="bigfooter">
+    	<img class="footer-top" src="img/首页/footer/底部的顶部.jpg">
+    	<div class="fangwei overfloe">
+        	<a href="">防伪查询>></a>
+            <p>当您购买到我们特步的产品时，找到产品防伪标识，刮开灰色涂层即可见一串防伪码数字，从上到下，从左到右依次输入防伪码（注意数字之间没有空格），然后点击验证查询真伪。</p>
+        </div>
+        <div class="footernav overfloe">
+        	<div class="footer">
+            	<a class="h1a" href="aboutyeli---01.html">关于野力</a>
+                <a class="pa" href="aboutyeli---01.html">野力简介</a>
+                <a class="pa" href="aboutyeli---02.html">历史荣耀</a>
+                <a class="pa" href="aboutyeli---03.html">企业文化</a>
+                <a class="pa" href="">核心理念</a>
+                <a class="pa" href="">使命远景</a>
+                <a class="pa" href="">企业架构</a>           
+				<a class="pa" href="">职业意识</a>
+                <a class="pa" href="">十周年</a>
+            </div>
+            <div class="footer">
+            	<a class="h1a" href="">投资者关系</a>
+                <a class="pa" href="">企业管制</a>
+                <a class="pa" href="">公司资料</a>
+                <a class="pa" href="">资讯披露</a>              
+            </div>
+            <div class="footer">
+            	<a class="h1a" href="">核心竞争力</a>
+                <a class="pa" href="">品牌力</a>
+                <a class="pa" href="">产品力</a>
+                <a class="pa" href="">终端力</a>
+                <a class="pa" href="">渠道力</a>
+                <a class="pa" href="">推广力</a>                
+            </div>
+            <div class="footer">
+            	<a class="h1a" href="">加盟野力</a>
+                <a class="pa" href="">加盟流程</a>                
+            </div>
+            <div class="footer">
+            	<a class="h1a" href="">终端销售</a>
+                <a class="pa" href="">野力商城</a>                
+            </div>
+            <div class="footer">
+            	<a class="h1a" href="">人才招聘</a>
+                <a class="pa" href="">社会招聘</a>
+                <a class="pa" href="">校园招聘</a>
+                <a class="pa" href="">人力理念</a>                
+            </div>
+            <div class="footer" style="width:80px;padding-left:12px;padding-right:18px">
+            	<a class="h1a" href="">联系我们</a>
+                <a class="pa" href="">联系方式</a>               
+            </div>
+        </div>
+        <div class="footerbottom overfloe">
+        	<img src="img/首页/footer/footerfgx.jpg">
+            <img class="footerlogo" src="img/首页/footer/footerlogo.png">
+            <p>野力（中国） 2014 版权所有 | 湘ICP备12345678号</p>
+        </div>
+    </div>
+
+</div>
+<div class="back">TOP</div>
+
+
+</body>
+<script>
+var n=0;
+$(".huadong img").hide().first().show();
+$(".bannerctrl span").mouseenter(
+	function(){
+		n=$(this).index();
+		$(this).addClass("current").siblings().removeClass("current");
+		$(".huadong img").hide().eq(n-1).show()
+		}
+);
+var t=setInterval(function(){
+	$(".shownewsbox").animate({marginLeft:-272},1000,//别忘了1000后面的逗号
+		function(){
+			$(".picture:last").after($(".picture:first"));//在最后一个dd后面插入第一个dd
+			$(".shownewsbox").css({marginLeft:0})
+		}
+)	
+	},
+2000);
+$(".shownewsbox").mouseenter(
+	function(){
+		clearInterval(t);
+		}
+).mouseleave(
+	function(){
+		t=setInterval(function(){
+	$(".shownewsbox").animate({marginLeft:-272},1000,//别忘了1000后面的逗号
+		function(){
+			$(".picture:last").after($(".picture:first"));//在最后一个dd后面插入第一个dd
+			$(".shownewsbox").css({marginLeft:0})
+		}
+)
+	
+	},
+2000);
+		}
+);
+$(".picture p a").mouseenter(
+	function(){
+		$(this).addClass("colora")
+		}
+).mouseleave(
+	
+	function(){
+		$(this).removeClass("colora")
+		}
+
+);
+$(".button").click(
+	function(){
+		$(this).attr("src","img/首页/内容/关注.png");
+		
+		}
+).mouseleave(
+	function(){
+		$(this).attr("src","img/首页/内容/关注.jpg");
+		
+		}
+);
+$(".footer").mouseenter(
+	function(){
+		$(this).addClass("footerbeijing")
+		}
+).mouseleave(
+	function(){
+		$(this).removeClass("footerbeijing")
+		}
+);
+$(".pa").mouseenter(
+	function(){
+		$(this).addClass("pabeijing")
+		}
+).mouseleave(
+	function(){
+		$(this).removeClass("pabeijing")
+		}
+);
+var toppos=0;
+$(".back").hide();
+$(document).scroll(
+	function(){
+		toppos=$(document).scrollTop();
+		
+});
+$(document).scroll(
+	function(){
+		
+		if(toppos>10){
+			$(".back").fadeIn();
+			}
+		else if(toppos==0){
+			$(".back").fadeOut();
+			}
+		}
+);<!--角色出现之前不可以操控，若想操控必须要加$(function(){})-->
+$(".back").click(
+	function(){
+		/*$(document).scrollTop(0)*/
+		$("html,body").animate({scrollTop:0})
+		}
+)
+
+
+</script>
+</html>
